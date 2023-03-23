@@ -4,11 +4,11 @@ import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 function formPrompt(word1: string, word2: string, percentile = 90) {
-	return `
-        Respond with one word that is the conceptual midpoint between "${word1}" and "${word2}". 
-        The response should be a singular noun, verb, or adjective. 
-        The response should be a word ${percentile}% of the English speaking population would use.
-    `;
+	const prompt =
+		`Respond with one word that is the conceptual midpoint between "${word1}" and "${word2}". ` +
+		`The response must be a singular noun, verb, or adjective that ${percentile}% of ` +
+		`English speakers would use, and must not be one of the following words: "${word1}", "${word2}".`;
+	return prompt;
 }
 
 export const GET = (async ({ url }) => {
@@ -48,5 +48,6 @@ export const GET = (async ({ url }) => {
 		.catch((error) => {
 			throw error;
 		});
+	console.log(word);
 	return new Response(word);
 }) satisfies RequestHandler;
