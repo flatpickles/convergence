@@ -72,6 +72,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Convergence</title>
+</svelte:head>
+
 <div class="pairs-wrapper">
 	{#each pairs as pair, idx}
 		{#if idx === pairs.length - 1}
@@ -92,6 +96,7 @@
 
 <style lang="scss">
 	.pairs-wrapper {
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

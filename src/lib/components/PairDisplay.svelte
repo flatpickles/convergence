@@ -30,15 +30,18 @@
 
 <div class="pair">
 	{#if gptWord.length > 0}
-		<span
-			class="input"
+		<div
+			class="input input-complete"
 			bind:this={entryField}
 			role="textbox"
 			contenteditable="false"
 			bind:textContent={userWord}
 		/>
+		<div class="response" bind:this={responseField}>
+			{gptWord}
+		</div>
 	{:else}
-		<span
+		<div
 			class="input"
 			bind:this={entryField}
 			role="textbox"
@@ -47,22 +50,31 @@
 			bind:textContent={userWord}
 		/>
 	{/if}
-	<div class="response" bind:this={responseField}>
-		{gptWord}
-	</div>
 </div>
 
 <style lang="scss">
-	.input {
-		width: auto;
-		min-width: 10rem;
-		max-width: 20rem;
-		text-align: center;
-	}
 	.pair {
-		display: flex;
-		flex-direction: row;
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: 1fr;
 		column-gap: 1rem;
+
+		width: 100%;
 		font-size: 2rem;
+	}
+
+	.input {
+		box-sizing: content-box;
+		min-width: 10rem;
+		text-align: center;
+		outline: 0px solid transparent;
+	}
+
+	.input-complete {
+		text-align: right;
+	}
+
+	.response {
+		text-align: left;
 	}
 </style>
