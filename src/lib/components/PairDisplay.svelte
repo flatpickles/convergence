@@ -9,16 +9,12 @@
 	let entryField: HTMLSpanElement;
 	let responseField: HTMLDivElement;
 
-	$: gptWordChanged(gptWord);
-	function gptWordChanged(newWord: string) {
-		if (entryField) {
-			console.log(newWord.length > 0);
-			entryField.contentEditable = newWord.length > 0 ? 'false' : 'true';
-		}
-	}
-
 	export function setFocus() {
 		entryField.focus();
+	}
+
+	export function reset() {
+		entryField.contentEditable = 'true';
 	}
 
 	function keyPressed(event: KeyboardEvent) {

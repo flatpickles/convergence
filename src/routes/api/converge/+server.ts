@@ -36,6 +36,7 @@ export const GET = (async ({ url }) => {
 	};
 
 	// Make request and return a cleaned-up response
+	// todo: retry when it's slow
 	const word = await axios
 		.post(requestURL, data, { headers })
 		.then((response) => {
@@ -46,8 +47,14 @@ export const GET = (async ({ url }) => {
 			return singleWordContent.trim().toLowerCase();
 		})
 		.catch((error) => {
-			throw error;
+			if (error.response) {
+				console.log(error.response.data);
+				throw error;
+			}
 		});
-	console.log(word);
+
+	// todo: add error handling
+	// if (Math.random() < 0.5) throw new Error('Random error');
+
 	return new Response(word);
 }) satisfies RequestHandler;

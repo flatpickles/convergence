@@ -8,9 +8,9 @@
 </div>
 
 <style lang="scss">
-	$test-bg: #f00;
-
 	.wrapper {
-		background-color: $test-bg;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 </style>

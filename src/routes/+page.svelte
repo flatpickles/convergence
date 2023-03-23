@@ -6,18 +6,27 @@
 	import type { PageData } from './$types';
 	export let data: PageData;
 
+	const errorText = 'Error! Please try again.';
+	const loadingText = 'Thinking...';
+
 	let pairs: ConvergencePair[] = [{ user: '', gpt: '' }];
 	let currentPairDisplay: PairDisplay;
-	let nextWord = data.firstWord;
+	let statusDisplay: HTMLDivElement;
+	let nextWord: string | null = data.firstWord;
+	let pendingSubmission: string | null = null;
 
 	onMount(() => {
 		currentPairDisplay.setFocus();
 	});
 
-	function submitted(event: CustomEvent<{ word: string }>) {
-		const submittedWord = event.detail.word;
+	function submitWord(submittedWord: string) {
+		// Make sure we have the nextWord
+		if (!nextWord) {
+			throw new Error('Submission made before next word was ready');
+		}
 
 		// Make the request for the next word
+		const lastWord = nextWord;
 		axios
 			.get('/api/converge', {
 				params: {
@@ -27,24 +36,39 @@
 			})
 			.then((res) => {
 				nextWord = res.data;
+				if (pendingSubmission) {
+					submitWord(pendingSubmission);
+					pendingSubmission = null;
+				}
+			})
+			.catch((err) => {
+				throw err;
+				// todo: handle error (probably offer a click to retry)
 			});
 
-		// Display results for current state
+		// Update & display current state
 		pairs[pairs.length - 1].gpt = nextWord;
 		pairs.push({ user: '', gpt: '' });
 		pairs = pairs;
+		nextWord = null;
+		statusDisplay.innerText = '';
 		setTimeout(() => {
 			currentPairDisplay.setFocus();
 		}, 0);
+	}
 
-		// setTimeout(() => {
-		// 	pairs[pairs.length - 1].gpt = submittedWord;
-		// 	pairs.push({ user: '', gpt: '' });
-		// 	pairs = pairs;
-		// 	setTimeout(() => {
-		// 		currentPairDisplay.setFocus();
-		// 	}, 0);
-		// }, 1000);
+	function userSubmit(event: CustomEvent<{ word: string }>) {
+		const submittedWord = event.detail.word;
+
+		// Check if the previous request is still pending
+		if (!nextWord) {
+			pendingSubmission = submittedWord;
+			statusDisplay.innerText = loadingText;
+			return;
+		}
+
+		// Submit the word!
+		submitWord(submittedWord);
 	}
 </script>
 
@@ -55,7 +79,7 @@
 			<PairDisplay
 				bind:userWord={pair.user}
 				bind:gptWord={pair.gpt}
-				on:submit={submitted}
+				on:submit={userSubmit}
 				bind:this={currentPairDisplay}
 			/>
 		{:else}
@@ -64,11 +88,12 @@
 	{/each}
 </div>
 
+<div class="status" bind:this={statusDisplay} />
+
 <style lang="scss">
 	.pairs-wrapper {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		background-color: blue;
 	}
 </style>
