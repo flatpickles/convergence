@@ -5,8 +5,9 @@ import type { RequestHandler } from './$types';
 
 function formPrompt(word1: string, word2: string, percentile = 90) {
 	return `
-        Respond with a single word that is the conceptual midpoint between "${word1}" and "${word2}".
-        Make sure the response is a word ${percentile}% of the English speaking population would use.
+        Respond with one word that is the conceptual midpoint between "${word1}" and "${word2}". 
+        The response should be a singular noun, verb, or adjective. 
+        The response should be a word ${percentile}% of the English speaking population would use.
     `;
 }
 
@@ -41,7 +42,8 @@ export const GET = (async ({ url }) => {
 			const punctuationRegex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
 			const responseContent = response.data.choices[0].message.content;
 			const cleanedContent = responseContent.replace(punctuationRegex, '');
-			return cleanedContent.trim().toLowerCase();
+			const singleWordContent = cleanedContent.split(' ').slice(-1)[0];
+			return singleWordContent.trim().toLowerCase();
 		})
 		.catch((error) => {
 			throw error;
