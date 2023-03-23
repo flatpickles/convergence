@@ -1,4 +1,5 @@
 <script lang="ts">
+	import 'ress';
 	import '../app.scss';
 </script>
 
