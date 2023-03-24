@@ -38,7 +38,10 @@ export const GET = (async ({ url }) => {
 	// Make request and return a cleaned-up response
 	// todo: retry when it's slow
 	const word = await axios
-		.post(requestURL, data, { headers })
+		.post(requestURL, data, {
+			headers: headers,
+			signal: AbortSignal.timeout(3000)
+		})
 		.then((response) => {
 			const punctuationRegex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
 			const responseContent = response.data.choices[0].message.content;
@@ -46,15 +49,18 @@ export const GET = (async ({ url }) => {
 			const singleWordContent = cleanedContent.split(' ').slice(-1)[0];
 			return singleWordContent.trim().toLowerCase();
 		})
-		.catch((error) => {
-			if (error.response) {
-				console.log(error.response.data);
-				throw error;
+		.catch((thrown) => {
+			if (axios.isCancel(thrown)) {
+				console.log(thrown.message);
+				throw error(408, 'OpenAI request timed out.');
+			} else if (thrown.response) {
+				console.log(thrown.response.data);
+				throw thrown;
 			}
 		});
 
 	// todo: add error handling
-	// if (Math.random() < 0.5) throw new Error('Random error');
+	// if (Math.random() < 0.7) throw new Error('Random error');
 
 	return new Response(word);
 }) satisfies RequestHandler;
