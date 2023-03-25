@@ -19,62 +19,75 @@
 
 	function keyPressed(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
+			const currentWord = (event.target as HTMLSpanElement).innerText;
+			userWord = currentWord;
 			event.preventDefault();
 			entryField.contentEditable = 'false';
 			dispatch('submit', {
-				word: (event.target as HTMLSpanElement).innerText
+				word: currentWord
 			});
 		}
 	}
 </script>
 
-<div class="pair">
-	{#if gptWord.length > 0}
-		<div
-			class="input input-complete"
-			bind:this={entryField}
-			role="textbox"
-			contenteditable="false"
-			bind:textContent={userWord}
-		/>
+<div class="pair" class:responded={gptWord.length > 0} on:click={setFocus} on:keyup={setFocus}>
+	<div class="left-spacer" />
+	<div
+		class="input"
+		bind:this={entryField}
+		role="textbox"
+		contenteditable={gptWord.length == 0}
+		on:keypress={keyPressed}
+	>
+		{userWord}
+	</div>
+	<div class="response-wrapper">
 		<div class="response" bind:this={responseField}>
 			{gptWord}
 		</div>
-	{:else}
-		<div
-			class="input"
-			bind:this={entryField}
-			role="textbox"
-			contenteditable="true"
-			on:keypress={keyPressed}
-			bind:textContent={userWord}
-		/>
-	{/if}
+	</div>
 </div>
 
 <style lang="scss">
-	.pair {
-		display: grid;
-		grid-auto-flow: column;
-		grid-auto-columns: 1fr;
-		column-gap: 1rem;
+	$slide-transition-time: 500ms;
+	$fade-transition-time: 1000ms;
 
+	.pair {
+		display: flex;
+		flex-direction: row;
 		width: 100%;
 		font-size: 2rem;
 	}
 
+	.left-spacer {
+		flex: 1;
+	}
+
 	.input {
-		box-sizing: content-box;
-		min-width: 10rem;
-		text-align: center;
+		padding: 0rem 0.5rem;
 		outline: 0px solid transparent;
 	}
 
-	.input-complete {
-		text-align: right;
+	.response-wrapper {
+		flex: 1;
+		min-width: 0%; // todo: set in JS to improve snappiness maybe
+		transition: $slide-transition-time;
 	}
 
 	.response {
-		text-align: left;
+		padding: 0rem 0.5rem;
+		opacity: 0%;
+		transition: $fade-transition-time;
+		transition-delay: $slide-transition-time;
+	}
+
+	.responded {
+		.response-wrapper {
+			min-width: 50%;
+		}
+
+		.response {
+			opacity: 100%;
+		}
 	}
 </style>

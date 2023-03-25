@@ -45,18 +45,14 @@
 </svelte:head>
 
 <div class="pairs-wrapper">
-	{#each gameManager.convergencePairs as pair, idx}
-		{#if idx === gameManager.convergencePairs.length - 1}
-			<!-- Last pair display is being edited-->
-			<PairDisplay
-				bind:userWord={pair.user}
-				bind:gptWord={pair.gpt}
-				on:submit={userSubmit}
-				bind:this={currentPairDisplay}
-			/>
-		{:else}
-			<PairDisplay userWord={pair.user} gptWord={pair.gpt} />
-		{/if}
+	{#each gameManager.convergencePairs as pair}
+		<!-- currentPairDisplay set to last element -->
+		<PairDisplay
+			bind:userWord={pair.user}
+			bind:gptWord={pair.gpt}
+			on:submit={userSubmit}
+			bind:this={currentPairDisplay}
+		/>
 	{/each}
 </div>
 
