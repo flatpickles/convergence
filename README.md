@@ -22,6 +22,7 @@ Play an improv game with GPT!
   - presence_penalty instead of asking for no repeats in prompt?
   - Experiment with system definition (instead of putting everything in 'user')
   - Fine tuning?
+- Error page
 
 ## Ideas
 

@@ -44,28 +44,39 @@
 	<title>Convergence</title>
 </svelte:head>
 
-<div class="pairs-wrapper">
-	{#each gameManager.convergencePairs as pair}
-		<!-- currentPairDisplay set to last element -->
-		<PairDisplay
-			bind:userWord={pair.user}
-			bind:gptWord={pair.gpt}
-			on:submit={userSubmit}
-			bind:this={currentPairDisplay}
-		/>
-	{/each}
-</div>
+<section class="game-wrapper">
+	<div class="pairs-wrapper">
+		{#each gameManager.convergencePairs as pair}
+			<!-- currentPairDisplay set to last element -->
+			<PairDisplay
+				bind:userWord={pair.user}
+				bind:gptWord={pair.gpt}
+				on:submit={userSubmit}
+				bind:this={currentPairDisplay}
+			/>
+		{/each}
+	</div>
 
-<div class="status">
-	{#if loadingDisplayed}
-		Thinking...
-	{:else if errorDisplayed}
-		<!-- todo: make it clickable -->
-		An error occurred. Try again?
-	{/if}
-</div>
+	<div class="status">
+		{#if loadingDisplayed}
+			Thinking...
+		{:else if errorDisplayed}
+			<!-- todo: make it clickable -->
+			An error occurred. Try again?
+		{/if}
+	</div>
+</section>
 
 <style lang="scss">
+	.game-wrapper {
+		width: 100%;
+		min-height: 50%; // todo: improve this
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: end;
+	}
+
 	.pairs-wrapper {
 		width: 100%;
 		display: flex;
