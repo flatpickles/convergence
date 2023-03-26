@@ -6,12 +6,14 @@
 <section class="header-wrapper">
 	<div class="header">
 		<h1>Convergence</h1>
-		<h2>(?)</h2>
+		<h1>?</h1>
 	</div>
 	<div class="header-overlay" />
 </section>
 
-<slot />
+<section class="game-wrapper">
+	<slot />
+</section>
 
 <style lang="scss">
 	h1 {
@@ -19,7 +21,7 @@
 	}
 
 	.header-wrapper {
-		position: absolute;
+		position: fixed;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
@@ -30,19 +32,34 @@
 		flex-direction: row;
 		justify-content: space-between;
 		width: 100%;
-		padding: 0.25rem 0.25rem 0rem;
+		padding: 0.25rem 1rem 0rem;
+		color: $header-text-color;
 		background-color: $bg-color;
 	}
 
 	.header-overlay {
 		display: block;
 		width: 100%;
-		height: 4rem;
+		height: 2.5rem;
 
 		background-image: linear-gradient(
 			rgba($bg-color, 1),
-			cubic-bezier(0.25, 0, 1, 0.75),
+			cubic-bezier(0.75, 0, 1, 0.75),
 			rgba($bg-color, 0)
 		);
+	}
+
+	.game-wrapper {
+		width: 100%;
+		padding-top: 5rem;
+
+		// todo: improve this
+		min-height: 50%;
+		padding-bottom: 25%;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: end;
 	}
 </style>

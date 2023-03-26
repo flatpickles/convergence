@@ -66,6 +66,8 @@
 	.input {
 		padding: 0rem 0.5rem;
 		outline: 0px solid transparent;
+		text-align: right;
+		color: $input-text-color;
 	}
 
 	.response-wrapper {
@@ -79,6 +81,7 @@
 		opacity: 0%;
 		transition: $fade-transition-time;
 		transition-delay: $slide-transition-time;
+		color: $response-text-color;
 	}
 
 	.responded {
