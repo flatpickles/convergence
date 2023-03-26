@@ -37,6 +37,9 @@
 	function userSubmit(event: CustomEvent<{ word: string }>) {
 		// todo: sanitize input
 		gameManager.submitLocalWord(event.detail.word);
+		setTimeout(() => {
+			window.scrollTo(0, document.body.scrollHeight);
+		}, 0);
 	}
 </script>
 

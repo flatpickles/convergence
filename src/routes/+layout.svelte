@@ -51,11 +51,11 @@
 
 	.game-wrapper {
 		width: 100%;
-		padding-top: 5rem;
 
-		// todo: improve this
-		min-height: 50%;
-		padding-bottom: 25%;
+		box-sizing: content-box;
+		padding-top: 5rem;
+		min-height: calc(33vh - 5rem);
+		padding-bottom: calc(66vh);
 
 		display: flex;
 		flex-direction: column;
