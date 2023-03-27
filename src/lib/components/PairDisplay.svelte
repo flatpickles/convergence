@@ -23,6 +23,9 @@
 		entryField.addEventListener('blur', () => {
 			entryFieldFocused = false;
 		});
+		entryField.addEventListener('paste', (event) => {
+			event.preventDefault(); // prevent pasting
+		});
 	});
 
 	export function setFocus() {
@@ -38,7 +41,8 @@
 		if (!entryFieldFocused && entryField.innerText === '') setFocus();
 	}
 
-	function keyPressed(event: KeyboardEvent) {
+	function keydown(event: KeyboardEvent) {
+		// Check for submit
 		if (event.key === 'Enter') {
 			const currentWord = (event.target as HTMLSpanElement).innerText;
 			userWord = currentWord;
@@ -47,6 +51,12 @@
 			dispatch('submit', {
 				word: currentWord
 			});
+			return;
+		}
+
+		// Only allow upper or lowercase letters
+		if (event.key.length === 1 && !event.key.match(/[a-zA-Z]/)) {
+			event.preventDefault();
 		}
 	}
 </script>
@@ -65,7 +75,8 @@
 			bind:this={entryField}
 			role="textbox"
 			contenteditable={gptWord.length == 0}
-			on:keypress={keyPressed}
+			on:keydown={keydown}
+			autocapitalize="off"
 		>
 			{userWord}
 		</div>
@@ -80,6 +91,8 @@
 <style lang="scss">
 	$slide-transition-time: 500ms;
 	$fade-transition-time: 1000ms;
+	$distance-between-pairs: 2rem;
+	$half-distance: calc($distance-between-pairs / 2);
 
 	.pair {
 		display: flex;
@@ -93,7 +106,7 @@
 	}
 
 	.placeholder {
-		margin: 0rem 0.5rem; // compensate for input padding
+		margin: 0rem $half-distance; // compensate for input padding
 		position: absolute;
 		transform: translateX(-50%);
 		color: $placeholder-text-color;
@@ -108,7 +121,7 @@
 	}
 
 	.input {
-		padding: 0rem 0.5rem;
+		padding: 0rem $half-distance;
 		outline: 0px solid transparent;
 		text-align: right;
 		color: $input-text-color;
@@ -121,7 +134,7 @@
 	}
 
 	.response {
-		padding: 0rem 0.5rem;
+		padding: 0rem $half-distance;
 		opacity: 0%;
 		transition: $fade-transition-time;
 		transition-delay: $slide-transition-time;
