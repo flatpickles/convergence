@@ -8,9 +8,23 @@
 	const dispatch = createEventDispatcher();
 	let entryField: HTMLSpanElement;
 	let responseField: HTMLDivElement;
+	let entryFieldFocused = false;
+	$: showPlaceholder =
+		!entryFieldFocused && gptWord.length == 0 && entryField && entryField.innerText === '';
+
+	onMount(() => {
+		entryField.addEventListener('focus', () => {
+			entryFieldFocused = true;
+		});
+		entryField.addEventListener('blur', () => {
+			entryFieldFocused = false;
+		});
+	});
 
 	export function setFocus() {
 		entryField.focus();
+		// todo: cursor should be at the end
+		// todo: placeholder flashes when initialized focused (entryFieldFocused starts false)
 	}
 
 	export function reset() {
@@ -32,14 +46,17 @@
 
 <div class="pair" class:responded={gptWord.length > 0} on:click={setFocus} on:keyup={setFocus}>
 	<div class="left-spacer" />
-	<div
-		class="input"
-		bind:this={entryField}
-		role="textbox"
-		contenteditable={gptWord.length == 0}
-		on:keypress={keyPressed}
-	>
-		{userWord}
+	<div class="input-wrapper">
+		<div class="placeholder" class:visible={showPlaceholder}>(your word here)</div>
+		<div
+			class="input"
+			bind:this={entryField}
+			role="textbox"
+			contenteditable={gptWord.length == 0}
+			on:keypress={keyPressed}
+		>
+			{userWord}
+		</div>
 	</div>
 	<div class="response-wrapper">
 		<div class="response" bind:this={responseField}>
@@ -61,6 +78,20 @@
 
 	.left-spacer {
 		flex: 1;
+	}
+
+	.placeholder {
+		margin: 0rem 0.5rem; // compensate for padding
+		position: absolute;
+		transform: translateX(-50%);
+		box-sizing: border-box;
+		color: $placeholder-text-color;
+		opacity: 0%;
+		white-space: nowrap;
+	}
+
+	.placeholder.visible {
+		opacity: 100%;
 	}
 
 	.input {

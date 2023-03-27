@@ -31,7 +31,7 @@
 	);
 
 	onMount(() => {
-		currentPairDisplay.setFocus();
+		// currentPairDisplay.setFocus();
 	});
 
 	function userSubmit(event: CustomEvent<{ word: string }>) {

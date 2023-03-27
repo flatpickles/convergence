@@ -16,6 +16,8 @@
 </section>
 
 <style lang="scss">
+	$top-distance: 50vh;
+
 	h1 {
 		font-size: 2rem;
 	}
@@ -54,8 +56,8 @@
 
 		box-sizing: content-box;
 		padding-top: 5rem;
-		min-height: calc(33vh - 5rem);
-		padding-bottom: calc(66vh);
+		min-height: calc($top-distance - 5rem);
+		padding-bottom: calc(100vh - $top-distance);
 
 		display: flex;
 		flex-direction: column;
