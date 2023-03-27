@@ -4,15 +4,19 @@
 
 	export let userWord = '';
 	export let gptWord = '';
+	export let startFocused = false;
 
 	const dispatch = createEventDispatcher();
 	let entryField: HTMLSpanElement;
 	let responseField: HTMLDivElement;
-	let entryFieldFocused = false;
+	let entryFieldFocused = startFocused;
 	$: showPlaceholder =
-		!entryFieldFocused && gptWord.length == 0 && entryField && entryField.innerText === '';
+		!entryField || (!entryFieldFocused && gptWord.length == 0 && entryField.innerText === '');
 
 	onMount(() => {
+		if (startFocused) {
+			setFocus();
+		}
 		entryField.addEventListener('focus', () => {
 			entryFieldFocused = true;
 		});
@@ -23,12 +27,15 @@
 
 	export function setFocus() {
 		entryField.focus();
-		// todo: cursor should be at the end
-		// todo: placeholder flashes when initialized focused (entryFieldFocused starts false)
 	}
 
 	export function reset() {
 		entryField.contentEditable = 'true';
+	}
+
+	function pairClicked() {
+		// set focus only if entry is unfocused and empty
+		if (!entryFieldFocused && entryField.innerText === '') setFocus();
 	}
 
 	function keyPressed(event: KeyboardEvent) {
@@ -44,10 +51,15 @@
 	}
 </script>
 
-<div class="pair" class:responded={gptWord.length > 0} on:click={setFocus} on:keyup={setFocus}>
+<div
+	class="pair"
+	class:responded={gptWord.length > 0}
+	on:click={pairClicked}
+	on:keyup={pairClicked}
+>
 	<div class="left-spacer" />
 	<div class="input-wrapper">
-		<div class="placeholder" class:visible={showPlaceholder}>(your word here)</div>
+		<div class="placeholder" class:hidden={!showPlaceholder}>(your word here)</div>
 		<div
 			class="input"
 			bind:this={entryField}
@@ -81,17 +93,18 @@
 	}
 
 	.placeholder {
-		margin: 0rem 0.5rem; // compensate for padding
+		margin: 0rem 0.5rem; // compensate for input padding
 		position: absolute;
 		transform: translateX(-50%);
-		box-sizing: border-box;
 		color: $placeholder-text-color;
-		opacity: 0%;
+		opacity: 100%;
 		white-space: nowrap;
+		pointer-events: none;
+		user-select: none;
 	}
 
-	.placeholder.visible {
-		opacity: 100%;
+	.placeholder.hidden {
+		opacity: 0%;
 	}
 
 	.input {

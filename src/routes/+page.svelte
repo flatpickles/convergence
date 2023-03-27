@@ -14,7 +14,6 @@
 		() => {
 			// Svelte reactivity...
 			gameManager.convergencePairs = gameManager.convergencePairs;
-			setTimeout(() => currentPairDisplay.setFocus(), 0);
 		},
 		(loading) => {
 			loadingDisplayed = loading;
@@ -55,6 +54,7 @@
 			bind:gptWord={pair.gpt}
 			on:submit={userSubmit}
 			bind:this={currentPairDisplay}
+			startFocused={gameManager.convergencePairs.length > 1}
 		/>
 	{/each}
 </div>

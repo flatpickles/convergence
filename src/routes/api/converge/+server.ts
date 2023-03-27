@@ -12,7 +12,8 @@ function formPrompt(word1: string, word2: string, percentile = 90) {
 }
 
 export const GET = (async ({ url }) => {
-	return new Response('testing');
+	// return new Response('testing');
+
 	// Get input words
 	const word1 = url.searchParams.get('word1');
 	const word2 = url.searchParams.get('word2');
