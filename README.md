@@ -9,8 +9,6 @@ Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) tha
 - Retry failed requests from GameManager?
 - Get test for GameManager working (fix axios mocking or explore fetch)
 - Placeholder text when entry field is unselected
-- Normalize & validate input text (lowercase, dictionary check, etc)
-- Handle errors on client (retry button maybe)
 - Better random starting word list (more words, not just nouns)
 - About overlay w/ details & share link
 - Prompt tuning
@@ -19,7 +17,7 @@ Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) tha
   - presence_penalty instead of asking for no repeats in prompt?
   - Experiment with system definition (instead of putting everything in 'user')
   - Fine tuning?
-- Error page and/or redirect everythign to home
+- Error page and/or redirect everything to home
 
 ## Ideas
 
