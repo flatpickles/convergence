@@ -6,7 +6,6 @@ Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) tha
 
 - Win state!
 - GameManager internal state simplification
-- GameManager -> page updates streamlining (one UI update function?)
 - Retry failed requests from GameManager?
 - Get test for GameManager working (fix axios mocking or explore fetch)
 - Placeholder text when entry field is unselected

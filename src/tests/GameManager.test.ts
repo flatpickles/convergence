@@ -12,11 +12,9 @@ vi.mock('axios', () => ({
 describe('GameManager', () => {
 	let gameManager: GameManager;
 	const updateUI = vi.fn();
-	const alertLoading = vi.fn();
-	const alertError = vi.fn();
 
 	beforeEach(() => {
-		gameManager = new GameManager(firstRemoteWord, updateUI, alertLoading, alertError);
+		gameManager = new GameManager(firstRemoteWord, updateUI);
 		(axios.get as MockedFunction<typeof axios.get>).mockReset();
 	});
 
@@ -31,8 +29,8 @@ describe('GameManager', () => {
 	it('applies the first words', () => {
 		const firstLocalWord = 'pants';
 		gameManager.submitLocalWord(firstLocalWord);
-		expect(gameManager.convergencePairs[0].user).toBe(firstLocalWord);
-		expect(gameManager.convergencePairs[0].gpt).toBe(firstRemoteWord);
+		expect(gameManager.convergencePairs[0].local).toBe(firstLocalWord);
+		expect(gameManager.convergencePairs[0].remote).toBe(firstRemoteWord);
 	});
 
 	// Mocking fuckery - this doesn't work for some reason :(

@@ -1,6 +1,12 @@
 import type { ConvergencePair } from './types';
 import axios from 'axios';
 
+export interface GameInterfaceState {
+	loading: boolean;
+	errored: boolean;
+	won: boolean;
+}
+
 export default class GameManager {
 	convergencePairs: ConvergencePair[] = [];
 	private _currentRemoteWord: string;
@@ -9,27 +15,18 @@ export default class GameManager {
 	private _pendingSubmission: string | null = null;
 	private _pendingRequest = false;
 
-	_updateUI: () => void;
-	_alertLoading: (loading: boolean) => void;
-	_alertError: (error: boolean) => void;
+	private _updateInterface: (state: GameInterfaceState) => void;
 
-	constructor(
-		firstRemoteWord: string,
-		updateUI: () => void,
-		alertLoading: (loading: boolean) => void,
-		alertError: (error: boolean) => void
-	) {
+	constructor(firstRemoteWord: string, updateInterface: (state: GameInterfaceState) => void) {
 		// todo: can these use the values from convergence pairs to simplify?
 		this._currentLocalWord = '';
 		this._currentRemoteWord = '';
 		this._nextRemoteWord = firstRemoteWord;
 		this.convergencePairs.push({
-			user: '',
-			gpt: ''
+			local: '',
+			remote: ''
 		});
-		this._updateUI = updateUI;
-		this._alertLoading = alertLoading;
-		this._alertError = alertError;
+		this._updateInterface = updateInterface;
 	}
 
 	submitLocalWord(localWord: string) {
@@ -42,7 +39,7 @@ export default class GameManager {
 		} else {
 			// Queue next submission if request is loading; continue to another request if it failed
 			this._pendingSubmission = localWord;
-			this._alertLoading(true);
+			this._update(true, false, false);
 			if (this._pendingRequest) return;
 		}
 
@@ -61,30 +58,33 @@ export default class GameManager {
 			.catch(() => {
 				this._pendingRequest = false;
 				if (this._pendingSubmission) {
-					this._alertError(true);
+					this._update(false, true, false);
 				}
 			});
+	}
+
+	private _update(loading = false, errored = false, won = false) {
+		this._updateInterface({
+			loading,
+			errored,
+			won
+		});
 	}
 
 	private applyRemoteWord(remoteWord: string) {
-		this._alertError(false);
-		this._alertLoading(false);
-
-		this.convergencePairs[this.convergencePairs.length - 1].gpt = remoteWord;
-		this.convergencePairs.push({ user: '', gpt: '' });
-		this._updateUI();
+		const currPair = this.convergencePairs[this.convergencePairs.length - 1];
+		currPair.remote = remoteWord;
+		this.convergencePairs.push({ local: '', remote: '' });
+		this._update(false, false, currPair.local.toLowerCase() === currPair.remote);
 	}
 
 	private static async fetchRemoteWord(localWord: string, remoteWord: string): Promise<string> {
-		return axios
-			.get('/api/converge', {
-				params: {
-					word1: localWord,
-					word2: remoteWord
-				}
-			})
-			.then((res) => {
-				return res.data;
-			});
+		const result = await axios.get('/api/converge', {
+			params: {
+				word1: localWord,
+				word2: remoteWord
+			}
+		});
+		return result.data;
 	}
 }

@@ -9,25 +9,17 @@
 	let errorDisplayed = false;
 
 	let currentPairDisplay: PairDisplay;
-	const gameManager = new GameManager(
-		data.firstWord,
-		() => {
-			// Svelte reactivity...
-			gameManager.convergencePairs = gameManager.convergencePairs;
-		},
-		(loading) => {
-			loadingDisplayed = loading;
-		},
-		(error) => {
-			// todo clean this up
-			errorDisplayed = error;
-			if (error) {
-				loadingDisplayed = false;
-				currentPairDisplay.reset();
-				currentPairDisplay.setFocus();
-			}
+	const gameManager = new GameManager(data.firstWord, ({ loading, errored, won }) => {
+		loadingDisplayed = loading;
+		errorDisplayed = errored;
+		if (errored) {
+			currentPairDisplay.reset();
+			currentPairDisplay.setFocus();
 		}
-	);
+
+		// Svelte reactivity...
+		gameManager.convergencePairs = gameManager.convergencePairs;
+	});
 
 	onMount(() => {
 		// currentPairDisplay.setFocus();
@@ -50,8 +42,8 @@
 	{#each gameManager.convergencePairs as pair}
 		<!-- currentPairDisplay set to last element -->
 		<PairDisplay
-			bind:userWord={pair.user}
-			bind:gptWord={pair.gpt}
+			bind:userWord={pair.local}
+			bind:gptWord={pair.remote}
 			on:submit={userSubmit}
 			bind:this={currentPairDisplay}
 			startFocused={gameManager.convergencePairs.length > 1}
