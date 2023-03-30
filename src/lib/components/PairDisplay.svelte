@@ -89,8 +89,6 @@
 </div>
 
 <style lang="scss">
-	$slide-transition-time: 500ms;
-	$fade-transition-time: 1000ms;
 	$distance-between-pairs: 2rem;
 	$half-distance: calc($distance-between-pairs / 2);
 
@@ -124,7 +122,7 @@
 		padding: 0rem $half-distance;
 		outline: 0px solid transparent;
 		text-align: right;
-		color: $input-text-color;
+		color: $primary-text-color;
 	}
 
 	.response-wrapper {
@@ -138,7 +136,7 @@
 		opacity: 0%;
 		transition: $fade-transition-time;
 		transition-delay: $slide-transition-time;
-		color: $response-text-color;
+		color: $secondary-text-color;
 	}
 
 	.responded {

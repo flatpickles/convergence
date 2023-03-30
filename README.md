@@ -4,7 +4,6 @@ Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) tha
 
 ## Todo
 
-- Win state!
 - GameManager internal state simplification
 - Retry failed requests from GameManager?
 - Get test for GameManager working (fix axios mocking or explore fetch)

@@ -74,8 +74,9 @@ export default class GameManager {
 	private applyRemoteWord(remoteWord: string) {
 		const currPair = this.convergencePairs[this.convergencePairs.length - 1];
 		currPair.remote = remoteWord;
-		this.convergencePairs.push({ local: '', remote: '' });
-		this._update(false, false, currPair.local.toLowerCase() === currPair.remote);
+		const winState = currPair.local.toLowerCase() === currPair.remote;
+		if (!winState) this.convergencePairs.push({ local: '', remote: '' });
+		this._update(false, false, winState);
 	}
 
 	private static async fetchRemoteWord(localWord: string, remoteWord: string): Promise<string> {

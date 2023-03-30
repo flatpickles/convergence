@@ -12,6 +12,7 @@ function formPrompt(word1: string, word2: string, percentile = 90) {
 }
 
 export const GET = (async ({ url }) => {
+	// if (Math.random() < 0.9) throw new Error('Random error');
 	// return new Response('testing');
 
 	// Get input words
@@ -38,7 +39,6 @@ export const GET = (async ({ url }) => {
 	};
 
 	// Make request and return a cleaned-up response
-	// todo: retry when it's slow
 	const word = await axios
 		.post(requestURL, data, {
 			headers: headers,
@@ -60,9 +60,6 @@ export const GET = (async ({ url }) => {
 				throw thrown;
 			}
 		});
-
-	// todo: add error handling
-	// if (Math.random() < 0.7) throw new Error('Random error');
 
 	return new Response(word);
 }) satisfies RequestHandler;

@@ -7,11 +7,13 @@
 
 	let loadingDisplayed = false;
 	let errorDisplayed = false;
+	let winDisplayed = false;
 
 	let currentPairDisplay: PairDisplay;
 	const gameManager = new GameManager(data.firstWord, ({ loading, errored, won }) => {
 		loadingDisplayed = loading;
 		errorDisplayed = errored;
+		winDisplayed = won;
 		if (errored) {
 			currentPairDisplay.reset();
 			currentPairDisplay.setFocus();
@@ -31,6 +33,10 @@
 		setTimeout(() => {
 			window.scrollTo(0, document.body.scrollHeight);
 		}, 0);
+	}
+
+	function newGame() {
+		location.reload();
 	}
 </script>
 
@@ -55,9 +61,12 @@
 	{#if loadingDisplayed}
 		Thinking...
 	{:else if errorDisplayed}
-		<!-- todo: make it clickable -->
 		An error occurred. Try again?
 	{/if}
+
+	<div class="win" class:visible={winDisplayed} on:click={newGame} on:keypress={newGame}>
+		Great work team! Play again?
+	</div>
 </div>
 
 <style lang="scss">
@@ -66,5 +75,22 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.status {
+		padding-top: 0.5rem;
+		font-size: 1.2rem;
+		color: $secondary-text-color;
+	}
+
+	.win {
+		opacity: 0;
+		transition: $fade-transition-time;
+		transition-delay: $slide-transition-time + $fade-transition-time;
+	}
+
+	.win.visible {
+		opacity: 100%;
+		cursor: pointer;
 	}
 </style>
