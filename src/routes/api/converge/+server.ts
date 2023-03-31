@@ -2,10 +2,12 @@ import axios from 'axios';
 import { OPENAI_API_KEY } from '$env/static/private';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import Utils from '$lib/Utils';
 
 function formPrompt(word1: string, word2: string, percentile = 90) {
 	const prompt =
-		`Respond with one word that is the conceptual midpoint between "${word1}" and "${word2}". ` +
+		`Respond with a simple word that connects the words "${word1}" and "${word2}". ` +
+		`The response could be: the conceptual midpoint between these words, something similar or inclusive of both words, or some property they share. ` +
 		`The response must be a singular noun, verb, or adjective that ${percentile}% of ` +
 		`English speakers would use, and must not be one of the following words: "${word1}", "${word2}".`;
 	return prompt;
@@ -45,11 +47,8 @@ export const GET = (async ({ url }) => {
 			signal: AbortSignal.timeout(3000)
 		})
 		.then((response) => {
-			const punctuationRegex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
 			const responseContent = response.data.choices[0].message.content;
-			const cleanedContent = responseContent.replace(punctuationRegex, '');
-			const singleWordContent = cleanedContent.split(' ').slice(-1)[0];
-			return singleWordContent.trim().toLowerCase();
+			return Utils.cleanString(responseContent);
 		})
 		.catch((thrown) => {
 			if (axios.isCancel(thrown)) {
@@ -61,5 +60,6 @@ export const GET = (async ({ url }) => {
 			}
 		});
 
+	if (!word) throw error(500, 'OpenAI response was empty.');
 	return new Response(word);
 }) satisfies RequestHandler;

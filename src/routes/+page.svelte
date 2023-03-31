@@ -64,12 +64,16 @@
 		An error occurred. Try again?
 	{/if}
 
-	<div class="win" class:visible={winDisplayed} on:click={newGame} on:keypress={newGame}>
-		Great work team! Play again?
+	<div class="win" class:visible={winDisplayed}>
+		Great work team! <a href="/" on:click={newGame} on:keypress={newGame}>Play again?</a>
 	</div>
 </div>
 
 <style lang="scss">
+	a {
+		color: $primary-text-color;
+	}
+
 	.pairs-wrapper {
 		width: 100%;
 		display: flex;
@@ -91,6 +95,5 @@
 
 	.win.visible {
 		opacity: 100%;
-		cursor: pointer;
 	}
 </style>

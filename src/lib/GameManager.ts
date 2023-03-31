@@ -1,5 +1,6 @@
 import type { ConvergencePair } from './types';
 import axios from 'axios';
+import Utils from './Utils';
 
 export interface GameInterfaceState {
 	loading: boolean;
@@ -74,15 +75,29 @@ export default class GameManager {
 	private applyRemoteWord(remoteWord: string) {
 		const currPair = this.convergencePairs[this.convergencePairs.length - 1];
 		currPair.remote = remoteWord;
-		const winState = currPair.local.toLowerCase() === currPair.remote;
-		if (!winState) this.convergencePairs.push({ local: '', remote: '' });
-		this._update(false, false, winState);
+		const winQuality = GameManager.winQuality(currPair.local, currPair.remote);
+		if (winQuality == 0) this.convergencePairs.push({ local: '', remote: '' });
+		this._update(false, false, winQuality > 0); // todo
+	}
+
+	/**
+	 * Determine the win quality of a pair of words
+	 * @param localWord
+	 * @param remoteWord
+	 * @returns {number} 0 = no win, 1 = partial win, 2 = full win
+	 */
+	private static winQuality(localWord: string, remoteWord: string): number {
+		localWord = Utils.cleanString(localWord);
+		remoteWord = Utils.cleanString(remoteWord);
+		if (localWord === remoteWord) return 2;
+		if (localWord.includes(remoteWord) || remoteWord.includes(localWord)) return 1;
+		return 0;
 	}
 
 	private static async fetchRemoteWord(localWord: string, remoteWord: string): Promise<string> {
 		const result = await axios.get('/api/converge', {
 			params: {
-				word1: localWord,
+				word1: Utils.cleanString(localWord),
 				word2: remoteWord
 			}
 		});
