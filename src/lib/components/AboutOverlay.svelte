@@ -16,9 +16,9 @@
 			This app lets you play games of Convergence with
 			<a href="https://platform.openai.com/docs/models/gpt-3-5">gpt-3.5-turbo</a>, a large language
 			model from OpenAI. The gameplay works as you would expect: type a word, press enter, and try
-			to converge in as few guesses as possible! It's worth noting that the GPT player will never
-			re-guess a word from the most recent two, but it's allowed to guess words used earlier in the
-			game.
+			to converge with GPT in as few guesses as possible! It's worth noting that the GPT player will
+			never re-guess a word from the most recent two, but it's allowed to guess words used earlier
+			in the game.
 		</p>
 		<p>
 			While GPT is great at Convergence and makes a fantastic playmate, please keep in mind that

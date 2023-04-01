@@ -13,9 +13,14 @@ function formPrompt(word1: string, word2: string, percentile = 90) {
 	return prompt;
 }
 
-export const GET = (async ({ url }) => {
+export const GET = (async ({ url, setHeaders }) => {
 	// if (Math.random() < 0.9) throw new Error('Random error');
 	// return new Response('testing');
+
+	// Make sure new requests always get a fresh response
+	setHeaders({
+		'cache-control': 'max-age=0'
+	});
 
 	// Get input words
 	const word1 = url.searchParams.get('word1');
