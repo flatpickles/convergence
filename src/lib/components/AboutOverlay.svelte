@@ -8,9 +8,9 @@
 			Convergence is a
 			<a href="https://www.learnimprov.com/convergence/">classic improv game</a> for two or more players.
 			In this game, two players each think of a random word, count down from three, and shout their word
-			at the same time. Then, each player thinks of a new word that somehow connects the last two words,
-			and again, two players count down from three and shout their word at the same time. This continues
-			until two players "converge" upon the same word, at which point the game is won.
+			at the same time. Then, two players think of a new word that somehow connects the last two words,
+			and again, count down and shout their word. This continues until the players "converge" upon the
+			same word, at which point the game is won.
 		</p>
 		<p>
 			This app lets you play games of Convergence with

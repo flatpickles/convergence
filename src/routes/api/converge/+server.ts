@@ -37,8 +37,7 @@ export const GET = (async ({ url }) => {
 				role: 'user',
 				content: formPrompt(word1, word2)
 			}
-		],
-		temperature: 2
+		]
 	};
 
 	// Make request and return a cleaned-up response

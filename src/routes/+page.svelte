@@ -82,7 +82,8 @@
 	}
 
 	.status {
-		padding-top: 0.5rem;
+		text-align: center;
+		padding-top: 1rem;
 		font-size: $small-text-size;
 		color: $secondary-text-color;
 	}
