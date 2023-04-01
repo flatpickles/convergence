@@ -13,17 +13,17 @@
 			until two players "converge" upon the same word, at which point the game is won.
 		</p>
 		<p>
-			You can now play Convergence right here in your browser! This app lets you play games of
-			Convergence with <a href="https://platform.openai.com/docs/models/gpt-3-5">gpt-3.5-turbo</a>,
-			a large language model from OpenAI. The gameplay works as described above; give it a shot, and
-			you'll get a feel for it. It's worth noting that the GPT player will never guess a word that's
-			the same as one of the last pair of words, but it's allowed to guess words used earlier in the
+			This app lets you play games of Convergence with
+			<a href="https://platform.openai.com/docs/models/gpt-3-5">gpt-3.5-turbo</a>, a large language
+			model from OpenAI. The gameplay works as you would expect: type a word, press enter, and try
+			to converge in as few guesses as possible! It's worth noting that the GPT player will never
+			re-guess a word from the most recent two, but it's allowed to guess words used earlier in the
 			game.
 		</p>
 		<p>
 			While GPT is great at Convergence and makes a fantastic playmate, please keep in mind that
 			everything is more fun with real humans. Get some practice in here, then convince a few
-			friends to try playing Convergence with you in person! I promise you won't be disappointed.
+			friends to play Convergence with you in person! I promise you won't be disappointed.
 		</p>
 		<p>
 			Made with love by <a href="https://flatpickles.com">Matt Nichols</a>. Source code
@@ -59,7 +59,7 @@
 
 	.about-contents {
 		display: block;
-		max-width: 42rem;
+		max-width: 40rem;
 		padding: 0 1rem;
 		padding-bottom: 1rem;
 		font-size: $small-text-size;
