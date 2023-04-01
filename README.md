@@ -4,6 +4,7 @@ Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) tha
 
 ## Todo
 
+- Fix link styling throughout
 - Animate the bottom padding of the main wrapper on game win: scroll whole game into view
 - Bug: getting the same first remote word twice in a row (sometimes)
 - GameManager internal state simplification

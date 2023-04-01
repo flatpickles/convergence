@@ -4,11 +4,31 @@
 
 <section class="about" class:visible>
 	<div class="about-contents">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-		laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-		voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-		non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<p>
+			Convergence is a
+			<a href="https://www.learnimprov.com/convergence/">classic improv game</a> for two or more players.
+			In this game, two players each think of a random word, count down from three, and shout their word
+			at the same time. Then, each player thinks of a new word that somehow connects the last two words,
+			and again, two players count down from three and shout their word at the same time. This continues
+			until two players "converge" upon the same word, at which point the game is won.
+		</p>
+		<p>
+			You can now play Convergence right here in your browser! This app lets you play games of
+			Convergence with <a href="https://platform.openai.com/docs/models/gpt-3-5">gpt-3.5-turbo</a>,
+			a large language model from OpenAI. The gameplay works as described above; give it a shot, and
+			you'll get a feel for it. It's worth noting that the GPT player will never guess a word that's
+			the same as one of the last pair of words, but it's allowed to guess words used earlier in the
+			game.
+		</p>
+		<p>
+			While GPT is great at Convergence and makes a fantastic playmate, please keep in mind that
+			everything is more fun with real humans. Get some practice in here, then convince a few
+			friends to try playing Convergence with you in person! I promise you won't be disappointed.
+		</p>
+		<p>
+			Made with love by <a href="https://flatpickles.com">Matt Nichols</a>. Source code
+			<a href="https://github.com/flatpickles/convergence">here!</a>
+		</p>
 	</div>
 </section>
 
@@ -18,8 +38,8 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 100%;
 		padding-top: $header-height * 2;
+		margin-bottom: 10rem;
 		background-color: $bg-color;
 		z-index: 1;
 
@@ -38,8 +58,10 @@
 	}
 
 	.about-contents {
+		display: block;
 		max-width: 42rem;
 		padding: 0 1rem;
-		font-size: 1.2em;
+		padding-bottom: 1rem;
+		font-size: $small-text-size;
 	}
 </style>

@@ -7,7 +7,7 @@ import Utils from '$lib/Utils';
 function formPrompt(word1: string, word2: string, percentile = 90) {
 	const prompt =
 		`Respond with a simple word that connects the words "${word1}" and "${word2}". ` +
-		`The response could be: the conceptual midpoint between these words, something similar or inclusive of both words, or some property they share. ` +
+		`The response could be: the conceptual intersection of these words, something similar to both words, or some property they share. ` +
 		`The response must be a singular noun, verb, or adjective that ${percentile}% of ` +
 		`English speakers would use, and must not be one of the following words: "${word1}", "${word2}".`;
 	return prompt;
@@ -37,7 +37,8 @@ export const GET = (async ({ url }) => {
 				role: 'user',
 				content: formPrompt(word1, word2)
 			}
-		]
+		],
+		temperature: 2
 	};
 
 	// Make request and return a cleaned-up response

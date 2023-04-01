@@ -96,7 +96,7 @@
 		display: flex;
 		flex-direction: row;
 		width: 100%;
-		font-size: 2rem;
+		font-size: $large-text-size;
 	}
 
 	.left-spacer {

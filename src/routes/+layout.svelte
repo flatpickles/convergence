@@ -64,7 +64,7 @@
 	}
 
 	.about-button {
-		font-size: 2rem;
+		font-size: $large-text-size;
 		padding-right: 0.25rem;
 		cursor: pointer;
 		user-select: none;

@@ -9,6 +9,10 @@ a:hover {
     text-decoration: underline;
 }
 
+p:not(:first-of-type) {
+    margin-top: 1rem;
+}
+
 h1 {
     font-family: 'General Sans', sans-serif;
 }
