@@ -4,6 +4,7 @@ Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) tha
 
 ## Todo
 
+- Animate the bottom padding of the main wrapper on game win: scroll whole game into view
 - Bug: getting the same first remote word twice in a row (sometimes)
 - GameManager internal state simplification
 - Retry failed requests from GameManager?
@@ -15,6 +16,7 @@ Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) tha
   - presence_penalty instead of asking for no repeats in prompt?
   - Experiment with system definition (instead of putting everything in 'user')
 - Error page and/or redirect everything to home
+- Automatically focus input when playing again
 
 ## Ideas
 

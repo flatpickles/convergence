@@ -1,12 +1,23 @@
 <script lang="ts">
+	import AboutOverlay from '$lib/components/AboutOverlay.svelte';
 	import 'ress';
 	import '../app.scss';
+
+	export let aboutVisible = false;
+
+	function toggleAbout() {
+		aboutVisible = !aboutVisible;
+	}
 </script>
+
+<AboutOverlay visible={aboutVisible} />
 
 <section class="header-wrapper">
 	<div class="header">
 		<h1>Convergence</h1>
-		<h1>?</h1>
+		<h1 class="about-button" on:click={toggleAbout} on:keypress={toggleAbout}>
+			{#if aboutVisible}x{:else}?{/if}
+		</h1>
 	</div>
 	<div class="header-overlay" />
 </section>
@@ -19,7 +30,7 @@
 	$top-distance: 50vh;
 
 	h1 {
-		font-size: 2rem;
+		font-size: $header-font-size;
 	}
 
 	.header-wrapper {
@@ -27,6 +38,7 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
+		z-index: 2;
 	}
 
 	.header {
@@ -34,7 +46,7 @@
 		flex-direction: row;
 		justify-content: space-between;
 		width: 100%;
-		padding: 0.25rem 1rem 0rem;
+		padding: calc(($header-height - $header-font-size) / 2) 1rem 0rem;
 		color: $header-text-color;
 		background-color: $bg-color;
 	}
@@ -42,7 +54,7 @@
 	.header-overlay {
 		display: block;
 		width: 100%;
-		height: 2.5rem;
+		height: $header-height;
 
 		background-image: linear-gradient(
 			rgba($bg-color, 1),
@@ -51,12 +63,25 @@
 		);
 	}
 
+	.about-button {
+		font-size: 2rem;
+		padding-right: 0.25rem;
+		cursor: pointer;
+		user-select: none;
+		color: $secondary-text-color;
+		transition: $about-transition-time;
+	}
+
+	.about-button:hover {
+		color: $primary-text-color;
+	}
+
 	.game-wrapper {
 		width: 100%;
 
 		box-sizing: content-box;
-		padding-top: 5rem;
-		min-height: calc($top-distance - 5rem);
+		padding-top: $header-height * 2;
+		min-height: calc($top-distance - $header-height * 2);
 		padding-bottom: calc(100vh - $top-distance);
 
 		display: flex;
