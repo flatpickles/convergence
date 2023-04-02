@@ -18,7 +18,7 @@ h1 {
 }
 
 body {
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100); // --vh set in +layout.svelte
     background-color: $bg-color;
     font-family: 'Gambetta', serif;
 }

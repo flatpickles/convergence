@@ -1,6 +1,7 @@
 <script lang="ts">
 	import AboutOverlay from '$lib/components/AboutOverlay.svelte';
 	import 'ress';
+	import { onMount } from 'svelte';
 	import '../app.scss';
 
 	export let aboutVisible = false;
@@ -8,6 +9,18 @@
 	function toggleAbout() {
 		aboutVisible = !aboutVisible;
 	}
+
+	function updateVH() {
+		let vh = window.innerHeight * 0.01;
+		document.documentElement.style.setProperty('--vh', `${vh}px`);
+	}
+
+	onMount(() => {
+		updateVH();
+		window.addEventListener('resize', () => {
+			updateVH();
+		});
+	});
 </script>
 
 <AboutOverlay visible={aboutVisible} />
@@ -27,7 +40,9 @@
 </section>
 
 <style lang="scss">
-	$top-distance: 50vh;
+	$top-distance: 50;
+	$min-height: calc(var(--vh, 1vh) * $top-distance);
+	$bottom-padding: calc(100 - var(--vh, 1vh) * $top-distance);
 
 	h1 {
 		font-size: $header-font-size;
@@ -81,8 +96,8 @@
 
 		box-sizing: content-box;
 		padding-top: calc($header-height * 1.5);
-		min-height: calc($top-distance - $header-height * 1.5);
-		padding-bottom: calc(100vh - $top-distance);
+		min-height: calc($min-height - $header-height * 1.5);
+		padding-bottom: $bottom-padding;
 
 		display: flex;
 		flex-direction: column;

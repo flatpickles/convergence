@@ -5,7 +5,7 @@
 	function visibleUpdated(visible: boolean) {
 		// This is hacky and I'm not proud of it
 		// Overlay needs to be scrollable but also show up at the top of the page...
-		window.scrollTo(0, visible ? 0 : document.body.scrollHeight);
+		if (typeof window !== 'undefined') window.scrollTo(0, visible ? 0 : document.body.scrollHeight);
 	}
 </script>
 
