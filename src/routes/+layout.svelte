@@ -54,7 +54,7 @@
 	.header-overlay {
 		display: block;
 		width: 100%;
-		height: $header-height;
+		height: calc($header-height / 2);
 
 		background-image: linear-gradient(
 			rgba($bg-color, 1),
@@ -80,8 +80,8 @@
 		width: 100%;
 
 		box-sizing: content-box;
-		padding-top: $header-height * 2;
-		min-height: calc($top-distance - $header-height * 2);
+		padding-top: calc($header-height * 1.5);
+		min-height: calc($top-distance - $header-height * 1.5);
 		padding-bottom: calc(100vh - $top-distance);
 
 		display: flex;

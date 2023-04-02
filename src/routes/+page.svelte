@@ -83,7 +83,7 @@
 
 	.status {
 		text-align: center;
-		padding-top: 1rem;
+		padding-top: 0.75rem;
 		font-size: $small-text-size;
 		color: $secondary-text-color;
 	}

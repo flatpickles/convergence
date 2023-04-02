@@ -22,8 +22,8 @@
 		</p>
 		<p>
 			While GPT is great at Convergence and makes a fantastic playmate, please keep in mind that
-			everything is more fun with real humans. Get some practice in here, then convince a few
-			friends to play Convergence with you in person! I promise you won't be disappointed.
+			everything is more fun with real humans. Get some practice here, then convince a few friends
+			to play Convergence with you in person! I promise you won't be disappointed.
 		</p>
 		<p>
 			Made with love by <a href="https://flatpickles.com">Matt Nichols</a>. Source code
@@ -38,7 +38,7 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		padding-top: $header-height * 2;
+		padding-top: calc($header-height * 1.5);
 		margin-bottom: 10rem;
 		background-color: $bg-color;
 		z-index: 1;
@@ -60,8 +60,12 @@
 	.about-contents {
 		display: block;
 		max-width: 40rem;
-		padding: 0 1rem;
-		padding-bottom: 1rem;
+		padding: 0.75rem 1rem;
+		margin: 0rem 1rem 1rem;
 		font-size: $small-text-size;
+		border: 1px solid black;
+		border-radius: 0.25rem;
+		text-align: justify;
+		background-color: rgba(0, 0, 0, 3%);
 	}
 </style>
