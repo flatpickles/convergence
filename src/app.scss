@@ -1,12 +1,12 @@
 a {
     color: $secondary-text-color;
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
+    text-decoration-style: solid;
+    // transition: color 0.2s ease-in-out;
 }
 
 a:hover {
     color: $primary-text-color;
-    text-decoration: underline;
+    text-decoration-style: solid;
 }
 
 p:not(:first-of-type) {

@@ -70,10 +70,6 @@
 </div>
 
 <style lang="scss">
-	a {
-		color: $primary-text-color;
-	}
-
 	.pairs-wrapper {
 		width: 100%;
 		display: flex;

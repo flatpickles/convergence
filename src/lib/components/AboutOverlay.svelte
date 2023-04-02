@@ -1,5 +1,12 @@
 <script lang="ts">
 	export let visible = false;
+	$: visibleUpdated(visible);
+
+	function visibleUpdated(visible: boolean) {
+		// This is hacky and I'm not proud of it
+		// Overlay needs to be scrollable but also show up at the top of the page...
+		window.scrollTo(0, visible ? 0 : document.body.scrollHeight);
+	}
 </script>
 
 <section class="about" class:visible>
@@ -42,17 +49,17 @@
 		margin-bottom: 10rem;
 		background-color: $bg-color;
 		z-index: 1;
+		overflow-y: scroll;
 
-		display: flex;
+		display: none;
 		flex-direction: row;
 		justify-content: center;
 
 		pointer-events: none;
-		opacity: 0%;
-		transition: $about-transition-time;
 	}
 
 	.about.visible {
+		display: flex;
 		opacity: 100%;
 		pointer-events: all;
 	}
