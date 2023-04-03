@@ -1,14 +1,11 @@
 # Convergence
 
-Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) that you can now play with GPT! **This is a work in progress, stay tuned.**
+Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) that you can now play with GPT via this webapp! Read more about it in the details on [https://convergence.guru](convergence.guru).
 
-## Todo
+## Potential improvements:
 
-- GameManager internal state simplification
-- Get test for GameManager working (fix axios mocking or explore fetch)
-- Placeholder text when entry field is unselected
-
-## Ideas
-
-- Configurable difficulty
-- Game history (local storage)
+- Internal state simplification in GameManager
+- Mocking solution to enable further unit testing
+- Improved mobile behavior - weirdness & hacky solutions in place
+- Configurable difficulty (update prompt w/ obscurity instructions)
+- Game history (via local storage)

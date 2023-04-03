@@ -33,7 +33,7 @@ describe('GameManager', () => {
 		expect(gameManager.convergencePairs[0].remote).toBe(firstRemoteWord);
 	});
 
-	// Mocking fuckery - this doesn't work for some reason :(
+	// Unclear why mocking isn't working here - todo
 
 	// it('applies the second words', () => {
 	// 	const firstLocalWord = 'pants';

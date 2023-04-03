@@ -80,12 +80,7 @@ export default class GameManager {
 		this._update(false, false, winQuality);
 	}
 
-	/**
-	 * Determine the win quality of a pair of words
-	 * @param localWord
-	 * @param remoteWord
-	 * @returns {number} 0 = no win, 1 = partial win, 2 = full win
-	 */
+	// 0 = no win, 1 = partial win, 2 = full win
 	private static winQuality(localWord: string, remoteWord: string): number {
 		if (!localWord.length || !remoteWord.length) return 0;
 		localWord = Utils.cleanString(localWord);
