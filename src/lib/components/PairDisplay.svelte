@@ -97,6 +97,9 @@
 		flex-direction: row;
 		width: 100%;
 		font-size: $large-text-size;
+		@media screen and (max-width: $mobile-breakpoint) {
+			font-size: $large-text-size-mobile;
+		}
 	}
 
 	.left-spacer {
@@ -128,13 +131,13 @@
 	.response-wrapper {
 		flex: 1;
 		min-width: 0%; // todo: set in JS to improve snappiness maybe
-		transition: $slide-transition-time;
+		transition: min-width $slide-transition-time;
 	}
 
 	.response {
 		padding: 0rem $half-distance;
 		opacity: 0%;
-		transition: $fade-transition-time;
+		transition: opacity $fade-transition-time;
 		transition-delay: $slide-transition-time;
 		color: $secondary-text-color;
 	}

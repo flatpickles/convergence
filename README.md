@@ -4,6 +4,7 @@ Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) tha
 
 ## Potential improvements:
 
+- Better behavior with long words on narrow screens
 - Internal state simplification in GameManager
 - Mocking solution to enable further unit testing
 - Improved mobile behavior - weirdness & hacky solutions in place

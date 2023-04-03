@@ -89,7 +89,7 @@
 		cursor: pointer;
 		user-select: none;
 		color: $secondary-text-color;
-		transition: $about-transition-time;
+		transition: color $about-transition-time;
 	}
 
 	.about-button:hover {

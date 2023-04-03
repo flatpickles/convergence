@@ -91,11 +91,14 @@
 		padding-top: 0.75rem;
 		font-size: $small-text-size;
 		color: $secondary-text-color;
+		@media screen and (max-width: $mobile-breakpoint) {
+			font-size: $small-text-size-mobile;
+		}
 	}
 
 	.win {
 		opacity: 0;
-		transition: $fade-transition-time;
+		transition: opacity $fade-transition-time;
 		transition-delay: $slide-transition-time + $fade-transition-time;
 	}
 
