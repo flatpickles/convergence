@@ -5,7 +5,7 @@ import Utils from './Utils';
 export interface GameInterfaceState {
 	loading: boolean;
 	errored: boolean;
-	won: boolean;
+	winQuality: number;
 }
 
 export default class GameManager {
@@ -40,7 +40,7 @@ export default class GameManager {
 		} else {
 			// Queue next submission if request is loading; continue to another request if it failed
 			this._pendingSubmission = localWord;
-			this._update(true, false, false);
+			this._update(true, false, 0);
 			if (this._pendingRequest) return;
 		}
 
@@ -59,16 +59,16 @@ export default class GameManager {
 			.catch(() => {
 				this._pendingRequest = false;
 				if (this._pendingSubmission) {
-					this._update(false, true, false);
+					this._update(false, true, 0);
 				}
 			});
 	}
 
-	private _update(loading = false, errored = false, won = false) {
+	private _update(loading = false, errored = false, winQuality = 0) {
 		this._updateInterface({
 			loading,
 			errored,
-			won
+			winQuality
 		});
 	}
 
@@ -77,7 +77,7 @@ export default class GameManager {
 		currPair.remote = remoteWord;
 		const winQuality = GameManager.winQuality(currPair.local, currPair.remote);
 		if (winQuality == 0) this.convergencePairs.push({ local: '', remote: '' });
-		this._update(false, false, winQuality > 0); // todo
+		this._update(false, false, winQuality);
 	}
 
 	/**
@@ -87,10 +87,15 @@ export default class GameManager {
 	 * @returns {number} 0 = no win, 1 = partial win, 2 = full win
 	 */
 	private static winQuality(localWord: string, remoteWord: string): number {
+		if (!localWord.length || !remoteWord.length) return 0;
 		localWord = Utils.cleanString(localWord);
 		remoteWord = Utils.cleanString(remoteWord);
 		if (localWord === remoteWord) return 2;
-		if (localWord.includes(remoteWord) || remoteWord.includes(localWord)) return 1;
+		if (
+			localWord.includes(remoteWord.substring(0, 3)) ||
+			remoteWord.includes(localWord.substring(0, 3))
+		)
+			return 1;
 		return 0;
 	}
 

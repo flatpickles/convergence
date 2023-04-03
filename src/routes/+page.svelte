@@ -7,13 +7,13 @@
 
 	let loadingDisplayed = false;
 	let errorDisplayed = false;
-	let winDisplayed = false;
+	let winDisplayQuality = 0;
 
 	let currentPairDisplay: PairDisplay;
-	const gameManager = new GameManager(data.firstWord, ({ loading, errored, won }) => {
+	const gameManager = new GameManager(data.firstWord, ({ loading, errored, winQuality }) => {
 		loadingDisplayed = loading;
 		errorDisplayed = errored;
-		winDisplayed = won;
+		winDisplayQuality = winQuality;
 		if (errored) {
 			currentPairDisplay.reset();
 			currentPairDisplay.setFocus();
@@ -24,6 +24,11 @@
 	});
 
 	function userSubmit(event: CustomEvent<{ word: string }>) {
+		if (!event.detail.word || event.detail.word === '') {
+			currentPairDisplay.reset();
+			currentPairDisplay.setFocus();
+			return;
+		}
 		gameManager.submitLocalWord(event.detail.word);
 
 		// Only scroll to bottom on desktop; mobile is funky
@@ -63,8 +68,13 @@
 		An error occurred. Try again?
 	{/if}
 
-	<div class="win" class:visible={winDisplayed}>
-		Great work team! <a href="/" on:click={newGame} on:keypress={newGame}>Play again?</a>
+	<div class="win" class:visible={winDisplayQuality > 0}>
+		{#if winDisplayQuality == 2}
+			Great work team!
+		{:else}
+			Close enough!
+		{/if}
+		<a href="/" on:click={newGame} on:keypress={newGame}>Play again?</a>
 	</div>
 </div>
 
