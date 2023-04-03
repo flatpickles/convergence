@@ -1,5 +1,6 @@
 <script lang="ts">
 	import AboutOverlay from '$lib/components/AboutOverlay.svelte';
+	import Utils from '$lib/Utils';
 	import 'ress';
 	import { onMount } from 'svelte';
 	import '../app.scss';
@@ -17,9 +18,13 @@
 
 	onMount(() => {
 		updateVH();
-		window.addEventListener('resize', () => {
-			updateVH();
-		});
+
+		// Only update with resize on desktop; mobile is funky
+		if (!Utils.isMobileDevice) {
+			window.addEventListener('resize', () => {
+				updateVH();
+			});
+		}
 	});
 </script>
 
@@ -42,7 +47,7 @@
 <style lang="scss">
 	$top-distance: 50;
 	$min-height: calc(var(--vh, 1vh) * $top-distance);
-	$bottom-padding: calc(100 - var(--vh, 1vh) * $top-distance);
+	$bottom-padding: calc((100 - $top-distance) * var(--vh, 1vh));
 
 	h1 {
 		font-size: $header-font-size;

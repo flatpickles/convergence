@@ -5,4 +5,10 @@ export default class Utils {
 		const singleWordContent = cleanedContent.split(' ').slice(-1)[0];
 		return singleWordContent.trim().toLowerCase();
 	}
+
+	static get isMobileDevice(): boolean {
+		return (
+			typeof window.orientation !== 'undefined' || navigator.userAgent.indexOf('IEMobile') !== -1
+		);
+	}
 }

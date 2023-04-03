@@ -1,8 +1,8 @@
 <script lang="ts">
 	import PairDisplay from '$lib/components/PairDisplay.svelte';
-	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 	import GameManager from '$lib/GameManager';
+	import Utils from '$lib/Utils';
 	export let data: PageData;
 
 	let loadingDisplayed = false;
@@ -23,16 +23,15 @@
 		gameManager.convergencePairs = gameManager.convergencePairs;
 	});
 
-	onMount(() => {
-		// currentPairDisplay.setFocus();
-	});
-
 	function userSubmit(event: CustomEvent<{ word: string }>) {
-		// todo: sanitize input
 		gameManager.submitLocalWord(event.detail.word);
-		setTimeout(() => {
-			window.scrollTo(0, document.body.scrollHeight);
-		}, 0);
+
+		// Only scroll to bottom on desktop; mobile is funky
+		if (!Utils.isMobileDevice) {
+			setTimeout(() => {
+				window.scrollTo(0, document.body.scrollHeight);
+			}, 0);
+		}
 	}
 
 	function newGame() {
