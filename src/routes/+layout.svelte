@@ -87,9 +87,17 @@
 		font-size: $large-text-size;
 		padding-right: 0.25rem;
 		cursor: pointer;
-		user-select: none;
 		color: $secondary-text-color;
 		transition: color $about-transition-time;
+
+		// No tap highlight on mobile
+		-webkit-tap-highlight-color: transparent;
+		-webkit-touch-callout: none;
+		user-select: none;
+	}
+
+	.about-button:focus {
+		outline: none !important;
 	}
 
 	.about-button:hover {
