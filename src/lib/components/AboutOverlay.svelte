@@ -58,6 +58,17 @@
 		pointer-events: none;
 	}
 
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.about::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.about {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+
 	.about.visible {
 		display: flex;
 		opacity: 100%;
