@@ -19,7 +19,7 @@ export default class GameManager {
 	private _updateInterface: (state: GameInterfaceState) => void;
 
 	constructor(firstRemoteWord: string, updateInterface: (state: GameInterfaceState) => void) {
-		// todo: can these use the values from convergence pairs to simplify?
+		// todo: Should _current words be values from convergencePairs to simplify?
 		this._currentLocalWord = '';
 		this._currentRemoteWord = '';
 		this._nextRemoteWord = firstRemoteWord;

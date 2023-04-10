@@ -13,19 +13,19 @@
 	<div class="about-contents">
 		<p>
 			Convergence is a
-			<a href="https://www.learnimprov.com/convergence/">classic improv game</a> for two or more players.
-			In this game, two players each think of a random word, count down from three, and shout their word
-			at the same time. Then, two players think of a new word that somehow connects the last two words,
-			and again, count down and shout their word. This continues until the players "converge" upon the
-			same word, at which point the game is won.
+			<a href="https://www.learnimprov.com/convergence/">classic improv game</a> for two (or more) players.
+			In the two-player version, the players each think of a random word, count down from three, and
+			shout their word at the same time. Then, each player thinks of a new word that somehow connects
+			the last two words, and again, count down and shout their word. This continues until the players
+			"converge" upon the same word, at which point the game is won!
 		</p>
 		<p>
 			This app lets you play games of Convergence with
 			<a href="https://platform.openai.com/docs/models/gpt-3-5">gpt-3.5-turbo</a>, a large language
-			model from OpenAI. The gameplay works as you would expect: type a word, press enter, and try
-			to converge with GPT in as few guesses as possible! It's worth noting that the GPT player will
-			never re-guess a word from the most recent two, but it's allowed to guess words used earlier
-			in the game.
+			model from OpenAI. The gameplay works as you might expect: type a word, press enter, and then
+			try to converge with GPT in as few guesses as possible! It's worth noting that the GPT player
+			will avoid re-guessing a word from the most recent two, but it's allowed to guess words used
+			earlier in the game.
 		</p>
 		<p>
 			While GPT is great at Convergence and makes a fantastic playmate, please keep in mind that

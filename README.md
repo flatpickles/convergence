@@ -1,12 +1,11 @@
 # Convergence
 
-Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) that you can now play with GPT via this webapp! Read more about it in the details on [convergence.guru](https://convergence.guru).
+Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) that you can now play with GPT via [this webapp](https://convergence.guru)!
 
 ## Potential improvements:
 
-- Better behavior with long words on narrow screens
-- Internal state simplification in GameManager
+- Improved mobile behavior: better behavior with long words on narrow screens
 - Mocking solution to enable further unit testing
-- Improved mobile behavior - weirdness & hacky solutions in place
+- Internal state simplification in GameManager
 - Configurable difficulty (update prompt w/ obscurity instructions)
 - Game history (via local storage)
