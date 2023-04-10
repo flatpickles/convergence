@@ -43,8 +43,8 @@
 			"past": "amused"
 		},
 		{
-			"present": "analyse",
-			"past": "analysed"
+			"present": "analyze",
+			"past": "analyzed"
 		},
 		{
 			"present": "announce",
@@ -59,8 +59,8 @@
 			"past": "answered"
 		},
 		{
-			"present": "apologise",
-			"past": "apologised"
+			"present": "apologize",
+			"past": "apologized"
 		},
 		{
 			"present": "appear",
@@ -103,10 +103,6 @@
 			"past": "attached"
 		},
 		{
-			"present": "attack",
-			"past": "attacked"
-		},
-		{
 			"present": "attempt",
 			"past": "attempted"
 		},
@@ -133,18 +129,6 @@
 		{
 			"present": "balance",
 			"past": "balanced"
-		},
-		{
-			"present": "ban",
-			"past": "banned"
-		},
-		{
-			"present": "bang",
-			"past": "banged"
-		},
-		{
-			"present": "bare",
-			"past": "bared"
 		},
 		{
 			"present": "bat",
@@ -181,10 +165,6 @@
 		{
 			"present": "bless",
 			"past": "blessed"
-		},
-		{
-			"present": "blind",
-			"past": "blinded"
 		},
 		{
 			"present": "blink",
@@ -249,10 +229,6 @@
 		{
 			"present": "breathe",
 			"past": "breathed"
-		},
-		{
-			"present": "bruise",
-			"past": "bruised"
 		},
 		{
 			"present": "brush",
@@ -323,10 +299,6 @@
 			"past": "chased"
 		},
 		{
-			"present": "cheat",
-			"past": "cheated"
-		},
-		{
 			"present": "check",
 			"past": "checked"
 		},
@@ -337,14 +309,6 @@
 		{
 			"present": "chew",
 			"past": "chewed"
-		},
-		{
-			"present": "choke",
-			"past": "choked"
-		},
-		{
-			"present": "chop",
-			"past": "chopped"
 		},
 		{
 			"present": "claim",
@@ -383,8 +347,8 @@
 			"past": "collected"
 		},
 		{
-			"present": "colour",
-			"past": "coloured"
+			"present": "color",
+			"past": "colored"
 		},
 		{
 			"present": "comb",
@@ -1051,10 +1015,6 @@
 			"past": "injected"
 		},
 		{
-			"present": "injure",
-			"past": "injured"
-		},
-		{
 			"present": "instruct",
 			"past": "instructed"
 		},
@@ -1095,10 +1055,6 @@
 			"past": "itched"
 		},
 		{
-			"present": "jail",
-			"past": "jailed"
-		},
-		{
 			"present": "jam",
 			"past": "jammed"
 		},
@@ -1129,10 +1085,6 @@
 		{
 			"present": "kick",
 			"past": "kicked"
-		},
-		{
-			"present": "kill",
-			"past": "killed"
 		},
 		{
 			"present": "kiss",
@@ -1307,10 +1259,6 @@
 			"past": "mixed"
 		},
 		{
-			"present": "moan",
-			"past": "moaned"
-		},
-		{
 			"present": "moor",
 			"past": "moored"
 		},
@@ -1333,10 +1281,6 @@
 		{
 			"present": "multiply",
 			"past": "multiplied"
-		},
-		{
-			"present": "murder",
-			"past": "murdered"
 		},
 		{
 			"present": "nail",
@@ -1547,8 +1491,8 @@
 			"past": "poured"
 		},
 		{
-			"present": "practise",
-			"past": "practised"
+			"present": "practice",
+			"past": "practiced"
 		},
 		{
 			"present": "pray",
@@ -1651,10 +1595,6 @@
 			"past": "questioned"
 		},
 		{
-			"present": "race",
-			"past": "raced"
-		},
-		{
 			"present": "radiate",
 			"past": "radiated"
 		},
@@ -1671,16 +1611,16 @@
 			"past": "reached"
 		},
 		{
-			"present": "realise",
-			"past": "realised"
+			"present": "realize",
+			"past": "realized"
 		},
 		{
 			"present": "receive",
 			"past": "received"
 		},
 		{
-			"present": "recognise",
-			"past": "recognised"
+			"present": "recognize",
+			"past": "recognized"
 		},
 		{
 			"present": "record",
@@ -2231,10 +2171,6 @@
 			"past": "tempted"
 		},
 		{
-			"present": "terrify",
-			"past": "terrified"
-		},
-		{
 			"present": "test",
 			"past": "tested"
 		},
@@ -2304,7 +2240,7 @@
 		},
 		{
 			"present": "travel",
-			"past": "travelled"
+			"past": "traveled"
 		},
 		{
 			"present": "treat",
@@ -2379,10 +2315,6 @@
 			"past": "unpacked"
 		},
 		{
-			"present": "untidy",
-			"past": "untidied"
-		},
-		{
 			"present": "use",
 			"past": "used"
 		},
@@ -2455,10 +2387,6 @@
 			"past": "whined"
 		},
 		{
-			"present": "whip",
-			"past": "whipped"
-		},
-		{
 			"present": "whirl",
 			"past": "whirled"
 		},
@@ -2513,10 +2441,6 @@
 		{
 			"present": "wriggle",
 			"past": "wriggled"
-		},
-		{
-			"present": "x-ray",
-			"past": "x-rayed"
 		},
 		{
 			"present": "yawn",
