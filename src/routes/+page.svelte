@@ -98,11 +98,13 @@
 
 	.win {
 		opacity: 0;
+		pointer-events: none;
 		transition: opacity $fade-transition-time;
 		transition-delay: $slide-transition-time + $fade-transition-time;
 	}
 
 	.win.visible {
+		pointer-events: all;
 		opacity: 100%;
 	}
 </style>

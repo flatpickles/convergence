@@ -6,6 +6,8 @@
 	export let gptWord = '';
 	export let startFocused = false;
 
+	const maxInputLength = 20;
+
 	const dispatch = createEventDispatcher();
 	let entryField: HTMLSpanElement;
 	let responseField: HTMLDivElement;
@@ -42,9 +44,10 @@
 	}
 
 	function keydown(event: KeyboardEvent) {
+		const currentWord = (event.target as HTMLSpanElement).innerText;
+
 		// Check for submit
 		if (event.key === 'Enter') {
-			const currentWord = (event.target as HTMLSpanElement).innerText;
 			userWord = currentWord;
 			event.preventDefault();
 			entryField.contentEditable = 'false';
@@ -56,6 +59,11 @@
 
 		// Only allow upper or lowercase letters
 		if (event.key.length === 1 && !event.key.match(/[a-zA-Z]/)) {
+			event.preventDefault();
+		}
+
+		// Don't allow long inputs
+		if (event.key.length == 1 && currentWord.length >= maxInputLength) {
 			event.preventDefault();
 		}
 	}
@@ -96,6 +104,7 @@
 		display: flex;
 		flex-direction: row;
 		width: 100%;
+		overflow: hidden;
 		font-size: $large-text-size;
 		@media screen and (max-width: $mobile-breakpoint) {
 			font-size: $large-text-size-mobile;
