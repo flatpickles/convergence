@@ -40,7 +40,7 @@
 	<div class="header-overlay" />
 </section>
 
-<section class="game-wrapper">
+<section class="game-wrapper" class:hidden={aboutVisible}>
 	<slot />
 </section>
 
@@ -116,5 +116,9 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: end;
+	}
+
+	.hidden {
+		display: none;
 	}
 </style>
