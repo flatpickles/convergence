@@ -1,6 +1,6 @@
 # Convergence
 
-Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) that you can now play with GPT via [this webapp](https://convergence.guru)!
+Convergence is a [fun improv game](https://www.learnimprov.com/convergence/) that you can now play with GPT via [this webapp](https://convergence.flatpickles.com/)!
 
 ## Potential improvements:
 
